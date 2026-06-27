@@ -106,6 +106,17 @@ export default function Detector() {
                   or click to browse local files
                 </p>
 
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    inputRef.current?.click();
+                  }}
+                  className="mt-6 px-5 py-2 text-xs font-medium tracking-wide border border-white/10 rounded-full bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300 cursor-pointer text-text-primary"
+                >
+                  Browse Files
+                </button>
+
                 <span className="text-[10px] text-text-muted mt-6 font-mono border border-white/5 bg-white/[0.01] px-3.5 py-1 rounded-full uppercase tracking-wider">
                   PNG, JPG, JPEG up to 10MB
                 </span>
@@ -222,6 +233,9 @@ export default function Detector() {
                         <p className="text-3xl font-bold tracking-tight text-white mt-1.5">
                           {result.prediction}
                         </p>
+                        <p className="text-xs font-mono text-text-secondary mt-2">
+                          Confidence: {(result.confidence * 100).toFixed(1)}%
+                        </p>
                       </div>
 
                       {/* Interactive Reset */}
@@ -243,11 +257,11 @@ export default function Detector() {
                     <div className="space-y-4">
                       <ProgressBar
                         label="Normal Class Probability"
-                        value={result.confidence?.normal ?? 0}
+                        value={(result.probabilities?.NORMAL ?? 0) * 100}
                       />
                       <ProgressBar
                         label="Pneumonia Class Probability"
-                        value={result.confidence?.pneumonia ?? 0}
+                        value={(result.probabilities?.PNEUMONIA ?? 0) * 100}
                       />
                     </div>
                   </Card>

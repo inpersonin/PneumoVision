@@ -1,16 +1,46 @@
-# React + Vite
+---
+title: PneumoVision AI
+emoji: 🫁
+colorFrom: gray
+colorTo: black
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# PneumoVision AI
 
-Currently, two official plugins are available:
+Chest X-ray pneumonia detection using a fine-tuned **ResNet18** (PyTorch).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Upload a chest X-ray image to receive a classification (**NORMAL** / **PNEUMONIA**) with class probabilities and confidence score.
 
-## React Compiler
+## Deployment checklist
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Place `pneumonia_model.pt` in the repository root (required for inference).
+2. Build the frontend: `npm install && npm run build`
+3. Push to this Space — the Docker image serves both the UI and `/predict` API.
 
-## Expanding the Oxlint configuration
+## API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+**POST** `/predict` — multipart form upload with field `file`
+
+```json
+{
+  "prediction": "NORMAL",
+  "probabilities": { "NORMAL": 0.92, "PNEUMONIA": 0.08 },
+  "confidence": 0.92
+}
+```
+
+**GET** `/health` — model and device status  
+**GET** `/metrics` — training metrics and history JSON
+
+## Disclaimer
+
+This tool is developed for research and educational purposes only. It is not intended for clinical diagnosis, medical decision-making, or replacement of professional healthcare advice.
+
+## Links
+
+- GitHub: [inpersonin](https://github.com/inpersonin)
+- Space: [inpersonin/PneumoVision](https://huggingface.co/spaces/inpersonin/PneumoVision)

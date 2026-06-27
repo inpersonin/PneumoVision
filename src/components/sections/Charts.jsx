@@ -10,8 +10,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  AreaChart,
-  Area,
+  BarChart,
+  Bar,
 } from "recharts";
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -157,38 +157,36 @@ export default function Charts() {
             </Card>
           </AnimatedSection>
 
-          {/* Chart 4 — ROC Curve */}
+          {/* Chart 4 — Test set metrics */}
           <AnimatedSection delay={0.1}>
             <Card className="p-6 bg-white/[0.015] border border-white/5 shadow-2xl">
               <p className="font-mono text-xs text-text-secondary uppercase tracking-widest mb-6 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                ROC Analysis
+                Test Set Metrics
               </p>
               <ResponsiveContainer width="100%" height={260}>
-                <AreaChart data={CHART_DATA.rocCurve} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <BarChart data={CHART_DATA.testMetrics} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
                   <XAxis
-                    dataKey="fpr"
+                    dataKey="name"
                     stroke="rgba(255,255,255,0.2)"
                     tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
                     axisLine={false}
                   />
                   <YAxis
+                    domain={[0, 100]}
                     stroke="rgba(255,255,255,0.2)"
                     tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
                     axisLine={false}
                   />
-                  <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
-                  <Area
-                    type="monotone"
-                    dataKey="tpr"
-                    stroke="#ffffff"
-                    strokeWidth={1.5}
-                    fill="rgba(255,255,255,0.02)"
-                    activeDot={{ r: 4, strokeWidth: 0 }}
-                    name="True Positive Rate"
+                  <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
+                  <Bar
+                    dataKey="value"
+                    fill="#ffffff"
+                    radius={[4, 4, 0, 0]}
+                    name="Score (%)"
                   />
-                </AreaChart>
+                </BarChart>
               </ResponsiveContainer>
             </Card>
           </AnimatedSection>

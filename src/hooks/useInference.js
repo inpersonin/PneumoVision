@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://your-space.hf.space/predict";
+const API_URL = import.meta.env.VITE_API_URL || "/predict";
 
 export function useInference() {
   const [result, setResult] = useState(null);
@@ -24,7 +24,12 @@ export function useInference() {
       });
 
       if (!response.ok) {
-        throw new Error(`Server responded with ${response.status}`);
+        const payload = await response.json().catch(() => null);
+        const detail = payload?.detail;
+        const message = Array.isArray(detail)
+          ? detail.map((item) => item.msg || item).join(", ")
+          : detail;
+        throw new Error(message || `Server responded with ${response.status}`);
       }
 
       const data = await response.json();

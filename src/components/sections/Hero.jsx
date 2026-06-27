@@ -77,7 +77,7 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] bg-gradient-to-b from-white via-white to-neutral-500 bg-clip-text text-transparent max-w-4xl mx-auto"
         >
-          AI-Powered Pneumonia Classification
+          PneumoVision AI
         </motion.h1>
 
         {/* Subtitle */}
@@ -87,7 +87,7 @@ export default function Hero() {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl mx-auto mt-8 leading-relaxed font-normal"
         >
-          An advanced deep learning system for automated chest X-ray classification, developed for academic research using convolutional neural networks and transfer learning.
+          Chest X-ray Pneumonia Detection System
         </motion.p>
 
         {/* CTAs */}

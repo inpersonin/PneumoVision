@@ -1,9 +1,7 @@
-// ============================================================
-// PneumoVision AI — Model Configuration
-// ============================================================
-// All model parameters, metrics, and dataset stats in one place.
-// Replace placeholder values ("—") with real data after training.
-// ============================================================
+import metricsData from "../../metrics/metrics.json";
+import historyData from "../../metrics/history.json";
+
+const pct = (value, digits = 1) => `${(value * 100).toFixed(digits)}%`;
 
 export const MODEL_INFO = {
   modelType: "Convolutional Neural Network",
@@ -16,28 +14,27 @@ export const MODEL_INFO = {
   lossFunction: "Cross-Entropy Loss",
   optimizer: "Adam",
   batchSize: 32,
-  epochs: 10,
+  epochs: historyData.train_loss.length,
   learningRate: 0.001,
   dataAugmentation: "Random Horizontal Flip, Random Rotation, Color Jitter",
   architecture: "ResNet18",
 };
 
+const lastTrainAcc = historyData.train_acc.at(-1);
+const lastValAcc = historyData.val_acc.at(-1);
+const lastTrainLoss = historyData.train_loss.at(-1);
+const lastValLoss = historyData.val_loss.at(-1);
+
 export const PERFORMANCE_METRICS = {
-  accuracy: "—",
-  precision: "—",
-  recall: "—",
-  f1Score: "—",
-  rocAuc: "—",
-  validationAccuracy: "—",
-  trainingAccuracy: "—",
-  trainingLoss: "—",
-  validationLoss: "—",
-  confusionMatrix: {
-    truePositive: "—",
-    trueNegative: "—",
-    falsePositive: "—",
-    falseNegative: "—",
-  },
+  accuracy: pct(metricsData.test_accuracy),
+  precision: pct(metricsData.precision),
+  recall: pct(metricsData.recall),
+  f1Score: pct(metricsData.f1_score),
+  rocAuc: metricsData.auc.toFixed(3),
+  validationAccuracy: pct(lastValAcc),
+  trainingAccuracy: pct(lastTrainAcc),
+  trainingLoss: lastTrainLoss.toFixed(4),
+  validationLoss: lastValLoss.toFixed(4),
 };
 
 export const DATASET_INFO = {
@@ -47,8 +44,8 @@ export const DATASET_INFO = {
   validationImages: "—",
   testingImages: "—",
   classDistribution: {
-    normal: "—",
-    pneumonia: "—",
+    normal: "NORMAL",
+    pneumonia: "PNEUMONIA",
   },
   imageResolution: "Variable (resized to 224×224)",
   augmentations: [
@@ -59,56 +56,23 @@ export const DATASET_INFO = {
   ],
 };
 
-// Placeholder chart data — replace with real training logs
+const toEpochSeries = (values) =>
+  values.map((value, index) => ({ epoch: index + 1, value }));
+
 export const CHART_DATA = {
-  trainingLoss: [
-    { epoch: 1, value: 0.65 },
-    { epoch: 2, value: 0.45 },
-    { epoch: 3, value: 0.35 },
-    { epoch: 4, value: 0.28 },
-    { epoch: 5, value: 0.22 },
-    { epoch: 6, value: 0.18 },
-    { epoch: 7, value: 0.15 },
-    { epoch: 8, value: 0.12 },
-    { epoch: 9, value: 0.10 },
-    { epoch: 10, value: 0.09 },
-  ],
-  validationLoss: [
-    { epoch: 1, value: 0.60 },
-    { epoch: 2, value: 0.42 },
-    { epoch: 3, value: 0.33 },
-    { epoch: 4, value: 0.29 },
-    { epoch: 5, value: 0.25 },
-    { epoch: 6, value: 0.23 },
-    { epoch: 7, value: 0.21 },
-    { epoch: 8, value: 0.20 },
-    { epoch: 9, value: 0.19 },
-    { epoch: 10, value: 0.18 },
-  ],
-  accuracy: [
-    { epoch: 1, training: 62, validation: 65 },
-    { epoch: 2, training: 72, validation: 74 },
-    { epoch: 3, training: 78, validation: 79 },
-    { epoch: 4, training: 83, validation: 82 },
-    { epoch: 5, training: 86, validation: 85 },
-    { epoch: 6, training: 89, validation: 87 },
-    { epoch: 7, training: 91, validation: 88 },
-    { epoch: 8, training: 93, validation: 89 },
-    { epoch: 9, training: 94, validation: 90 },
-    { epoch: 10, training: 95, validation: 90 },
-  ],
-  rocCurve: [
-    { fpr: 0.0, tpr: 0.0 },
-    { fpr: 0.02, tpr: 0.45 },
-    { fpr: 0.05, tpr: 0.68 },
-    { fpr: 0.1, tpr: 0.80 },
-    { fpr: 0.15, tpr: 0.86 },
-    { fpr: 0.2, tpr: 0.90 },
-    { fpr: 0.3, tpr: 0.93 },
-    { fpr: 0.4, tpr: 0.95 },
-    { fpr: 0.6, tpr: 0.97 },
-    { fpr: 0.8, tpr: 0.99 },
-    { fpr: 1.0, tpr: 1.0 },
+  trainingLoss: toEpochSeries(historyData.train_loss),
+  validationLoss: toEpochSeries(historyData.val_loss),
+  accuracy: historyData.train_acc.map((train, index) => ({
+    epoch: index + 1,
+    training: train * 100,
+    validation: historyData.val_acc[index] * 100,
+  })),
+  testMetrics: [
+    { name: "Accuracy", value: metricsData.test_accuracy * 100 },
+    { name: "Precision", value: metricsData.precision * 100 },
+    { name: "Recall", value: metricsData.recall * 100 },
+    { name: "F1 Score", value: metricsData.f1_score * 100 },
+    { name: "AUC", value: metricsData.auc * 100 },
   ],
 };
 
@@ -173,9 +137,9 @@ export const ARCHITECTURE_STEPS = [
   },
 ];
 
-// Links — update with your actual URLs
 export const LINKS = {
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
-  huggingface: "https://huggingface.co",
+  github: "https://github.com/inpersonin",
+  huggingface: "https://huggingface.co/spaces/inpersonin/PneumoVision",
 };
+
+export { metricsData, historyData };
