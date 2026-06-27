@@ -75,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] bg-gradient-to-b from-white via-white to-neutral-500 bg-clip-text text-transparent max-w-4xl mx-auto"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] text-white max-w-4xl mx-auto"
         >
           PneumoVision AI
         </motion.h1>

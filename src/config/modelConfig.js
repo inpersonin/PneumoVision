@@ -1,5 +1,5 @@
-import metricsData from "../../metrics/metrics.json";
-import historyData from "../../metrics/history.json";
+import metricsData from "../metrics/metrics.json";
+import historyData from "../metrics/history.json";
 
 const pct = (value, digits = 1) => `${(value * 100).toFixed(digits)}%`;
 
@@ -40,12 +40,12 @@ export const PERFORMANCE_METRICS = {
 export const DATASET_INFO = {
   name: "Chest X-Ray Images (Pneumonia)",
   source: "Kaggle",
-  trainingImages: "—",
-  validationImages: "—",
-  testingImages: "—",
+  trainingImages: "5,216",
+  validationImages: "16",
+  testingImages: "624",
   classDistribution: {
-    normal: "NORMAL",
-    pneumonia: "PNEUMONIA",
+    normal: "1,583 (27%)",
+    pneumonia: "4,273 (73%)",
   },
   imageResolution: "Variable (resized to 224×224)",
   augmentations: [

@@ -62,7 +62,7 @@ export default function Detector() {
       {/* Background ambient spotlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-white/[0.01] rounded-full blur-[130px] pointer-events-none z-0" />
 
-      <div className="max-w-3xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-3xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="Pneumonia Detector"
           subtitle="Upload a chest X-ray image for AI-powered analysis"

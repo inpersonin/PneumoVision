@@ -42,19 +42,19 @@ export default function ModelInfo() {
       {/* Background soft lighting */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-white/[0.005] rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="Model Configuration"
           subtitle="Technical specifications and deep learning hyper-parameters"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-16">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-16">
           {infoItems.map((item, index) => {
             const Icon = item.icon;
             const isNumeric = typeof item.value === "number" || item.label.includes("Resolution") || item.label.includes("Rate") || item.label.includes("Size") || item.label.includes("Epochs");
 
             return (
-              <AnimatedSection key={item.label} delay={index * 0.03}>
+              <AnimatedSection key={item.label} delay={index * 0.03} className="h-full">
                 <Card className="p-6 h-full flex flex-col justify-between group">
                   <div>
                     <div className="flex items-center justify-between">

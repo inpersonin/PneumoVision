@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 export default function Charts() {
   return (
     <section className="section-padding relative">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="Training Analytics"
           subtitle="Model training histories, losses, and learning progressions"
@@ -48,32 +48,34 @@ export default function Charts() {
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 Training Loss Curve
               </p>
-              <ResponsiveContainer width="100%" height={260}>
-                <LineChart data={CHART_DATA.trainingLoss} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                  <XAxis
-                    dataKey="epoch"
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <YAxis
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
-                  <Line
-                    type="monotone"
-                    dataKey="value"
-                    stroke="#ffffff"
-                    strokeWidth={1.5}
-                    dot={{ fill: "#ffffff", r: 2.5, strokeWidth: 0 }}
-                    activeDot={{ r: 4, strokeWidth: 0 }}
-                    name="Loss"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="w-full h-[260px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={CHART_DATA.trainingLoss} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
+                    <XAxis
+                      dataKey="epoch"
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <YAxis
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
+                    <Line
+                      type="monotone"
+                      dataKey="value"
+                      stroke="#ffffff"
+                      strokeWidth={1.5}
+                      dot={{ fill: "#ffffff", r: 2.5, strokeWidth: 0 }}
+                      activeDot={{ r: 4, strokeWidth: 0 }}
+                      name="Loss"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </Card>
           </AnimatedSection>
 
@@ -84,32 +86,34 @@ export default function Charts() {
                 <span className="w-1.5 h-1.5 rounded-full bg-neutral-600 animate-pulse" />
                 Validation Loss Curve
               </p>
-              <ResponsiveContainer width="100%" height={260}>
-                <LineChart data={CHART_DATA.validationLoss} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                  <XAxis
-                    dataKey="epoch"
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <YAxis
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
-                  <Line
-                    type="monotone"
-                    dataKey="value"
-                    stroke="#888888"
-                    strokeWidth={1.5}
-                    dot={{ fill: "#888888", r: 2.5, strokeWidth: 0 }}
-                    activeDot={{ r: 4, strokeWidth: 0 }}
-                    name="Loss"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="w-full h-[260px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={CHART_DATA.validationLoss} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
+                    <XAxis
+                      dataKey="epoch"
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <YAxis
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
+                    <Line
+                      type="monotone"
+                      dataKey="value"
+                      stroke="#888888"
+                      strokeWidth={1.5}
+                      dot={{ fill: "#888888", r: 2.5, strokeWidth: 0 }}
+                      activeDot={{ r: 4, strokeWidth: 0 }}
+                      name="Loss"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </Card>
           </AnimatedSection>
 
@@ -120,40 +124,42 @@ export default function Charts() {
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
                 Accuracy Progression
               </p>
-              <ResponsiveContainer width="100%" height={260}>
-                <LineChart data={CHART_DATA.accuracy} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                  <XAxis
-                    dataKey="epoch"
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <YAxis
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
-                  <Line
-                    type="monotone"
-                    dataKey="training"
-                    stroke="#ffffff"
-                    strokeWidth={1.5}
-                    dot={{ fill: "#ffffff", r: 2, strokeWidth: 0 }}
-                    name="Training"
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="validation"
-                    stroke="#666666"
-                    strokeWidth={1.5}
-                    strokeDasharray="4 4"
-                    dot={{ fill: "#666666", r: 2, strokeWidth: 0 }}
-                    name="Validation"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="w-full h-[260px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={CHART_DATA.accuracy} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
+                    <XAxis
+                      dataKey="epoch"
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <YAxis
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(255,255,255,0.05)" }} />
+                    <Line
+                      type="monotone"
+                      dataKey="training"
+                      stroke="#ffffff"
+                      strokeWidth={1.5}
+                      dot={{ fill: "#ffffff", r: 2, strokeWidth: 0 }}
+                      name="Training"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="validation"
+                      stroke="#666666"
+                      strokeWidth={1.5}
+                      strokeDasharray="4 4"
+                      dot={{ fill: "#666666", r: 2, strokeWidth: 0 }}
+                      name="Validation"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </Card>
           </AnimatedSection>
 
@@ -164,30 +170,32 @@ export default function Charts() {
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
                 Test Set Metrics
               </p>
-              <ResponsiveContainer width="100%" height={260}>
-                <BarChart data={CHART_DATA.testMetrics} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                  <XAxis
-                    dataKey="name"
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <YAxis
-                    domain={[0, 100]}
-                    stroke="rgba(255,255,255,0.2)"
-                    tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
-                    axisLine={false}
-                  />
-                  <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
-                  <Bar
-                    dataKey="value"
-                    fill="#ffffff"
-                    radius={[4, 4, 0, 0]}
-                    name="Score (%)"
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="w-full h-[260px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={CHART_DATA.testMetrics} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
+                    <XAxis
+                      dataKey="name"
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <YAxis
+                      domain={[0, 100]}
+                      stroke="rgba(255,255,255,0.2)"
+                      tick={{ fill: "#666", fontSize: 10, fontFamily: "monospace" }}
+                      axisLine={false}
+                    />
+                    <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
+                    <Bar
+                      dataKey="value"
+                      fill="#ffffff"
+                      radius={[4, 4, 0, 0]}
+                      name="Score (%)"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </Card>
           </AnimatedSection>
         </div>

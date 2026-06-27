@@ -7,7 +7,7 @@ import * as Icons from 'lucide-react';
 export default function TechStack() {
   return (
     <section className="section-padding">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="w-full max-w-7xl mx-auto px-6">
         <SectionHeader
           title="Technology Stack"
           subtitle="Tools and frameworks powering PneumoVision AI"

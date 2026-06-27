@@ -29,13 +29,13 @@ export default function Performance() {
     <section id="performance" className="section-padding relative bg-black">
       <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-white/[0.005] rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="Model Performance"
           subtitle="Empirical classification metrics from held-out test evaluation"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
           {metrics.map((metric, index) => {
             const Icon = metric.icon;
 

@@ -8,7 +8,7 @@ export default function About() {
     <section id="about" className="section-padding relative">
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white/[0.005] rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-4xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="About the Project"
           subtitle="Scientific context, transfer learning methodology, and academic goals"

@@ -15,14 +15,14 @@ export default function Dataset() {
   
   return (
     <section id="dataset" className="section-padding relative">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="Dataset Overview"
           subtitle="Distribution splits and preprocessing techniques of the chest X-ray cohort"
         />
 
         {/* Split Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-16">
           {splitCards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -51,7 +51,7 @@ export default function Dataset() {
         </div>
 
         {/* Details Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           {/* Class Distribution */}
           <AnimatedSection delay={0.05}>
             <Card className="p-6 h-[220px] flex flex-col justify-between">

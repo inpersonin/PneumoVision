@@ -10,7 +10,7 @@ export default function Architecture() {
       {/* Spotlight behind */}
       <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-white/[0.006] rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-4xl mx-auto px-6 relative z-10">
         <SectionHeader
           title="Pipeline Architecture"
           subtitle="End-to-end medical image preprocessing and classification pipeline"
