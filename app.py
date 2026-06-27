@@ -120,6 +120,21 @@ def load_model() -> None:
         model = checkpoint
     else:
         state_dict = _extract_state_dict(checkpoint)
+        model = models.resnet18(weights=None)
+        
+        if "fc.0.weight" in state_dict and "fc.3.weight" in state_dict:
+            hidden_dim = state_dict["fc.0.weight"].shape[0]
+            model.fc = nn.Sequential(
+                nn.Linear(model.fc.in_features, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(p=0.5),
+                nn.Linear(hidden_dim, num_classes)
+            )
+            logger.info("Detected sequential fc head (2-layer MLP) with hidden_dim=%d. Reconstructed model head.", hidden_dim)
+        else:
+            model.fc = nn.Linear(model.fc.in_features, num_classes)
+            logger.info("Detected standard linear fc head. Reconstructed model head.")
+            
         model.load_state_dict(state_dict, strict=True)
 
     model.to(_device)
